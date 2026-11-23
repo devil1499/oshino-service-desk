@@ -1,0 +1,1 @@
+<template><section class="empty-state panel"><span class="eyebrow">404</span><h1>这个页面暂时不存在</h1><p>从工单列表继续查看工作空间。</p><RouterLink to="/tickets" class="button primary">返回工单列表</RouterLink></section></template>

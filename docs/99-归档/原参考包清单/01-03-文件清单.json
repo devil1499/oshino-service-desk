@@ -1,0 +1,657 @@
+[
+  {
+    "path": "01-connectivity/.gitignore",
+    "bytes": 51,
+    "sha256": "85de8f61b0957d6133ba9f0df7a3c5adcd7a679077f092daa87d496b9ee51e4f"
+  },
+  {
+    "path": "01-connectivity/backend/app/main.py",
+    "bytes": 170,
+    "sha256": "24ade4d3efcbd424070d5dea1bf74730ec6e34d88421683915dacb3a71d88bbc"
+  },
+  {
+    "path": "01-connectivity/backend/requirements.txt",
+    "bytes": 43,
+    "sha256": "03d93a5373dd0dd09f644e49b7e2672b132e02c716907f289859eaa544251470"
+  },
+  {
+    "path": "01-connectivity/frontend/index.html",
+    "bytes": 319,
+    "sha256": "ecd99492cf5ec298edceee0d229637a9bab39fbe1ba81a129ad9791686b26fe0"
+  },
+  {
+    "path": "01-connectivity/frontend/package-lock.json",
+    "bytes": 39088,
+    "sha256": "a61c52eb6797bd6f94aaf84fa497217810155ea20b0b1c4e4eb851f398666823"
+  },
+  {
+    "path": "01-connectivity/frontend/package.json",
+    "bytes": 515,
+    "sha256": "d232e1db8d67338c07ef0367b53cde4b10e30f4a155f18abb17eb27a5faad234"
+  },
+  {
+    "path": "01-connectivity/frontend/src/App.vue",
+    "bytes": 1633,
+    "sha256": "c1299e5b96238a11aa9b51ec26b431f893fac120cf55568c0f135d874e6e8026"
+  },
+  {
+    "path": "01-connectivity/frontend/src/api/health.ts",
+    "bytes": 598,
+    "sha256": "6f1e0c947d86708f8cf23c41344f39ad926ff0ad5ebabf6d9a5dc59e3c841d37"
+  },
+  {
+    "path": "01-connectivity/frontend/src/main.ts",
+    "bytes": 91,
+    "sha256": "f5682a6b5f5d316816c19a320a6aa9620be8d8665b61974eec91efad9b510b18"
+  },
+  {
+    "path": "01-connectivity/frontend/tsconfig.json",
+    "bytes": 448,
+    "sha256": "640ffe7cd60840d1dc6620cf244eb0424b4d550e9be911a7184d26326bddc71b"
+  },
+  {
+    "path": "01-connectivity/frontend/vite.config.ts",
+    "bytes": 320,
+    "sha256": "9f583d2b6782c26fdbabceca241e8e3f64dd0dd1ef58536c6f08fa57dab5b345"
+  },
+  {
+    "path": "02-foundation/.gitignore",
+    "bytes": 90,
+    "sha256": "07992a5b767af1568866fb8d9c769a8ab92d26af6e7f6e03a1cdcece7bf87f74"
+  },
+  {
+    "path": "02-foundation/backend/.env.example",
+    "bytes": 135,
+    "sha256": "ba48b05522c3e244cc5bc05841869ae31c2d2581bc3ce14f92c8f2c215c29cf2"
+  },
+  {
+    "path": "02-foundation/backend/.env.test.example",
+    "bytes": 108,
+    "sha256": "a54a5a7c364c656ad082d3d56a4ab3d7c3895b4380209eeb95e5a5e939fd1240"
+  },
+  {
+    "path": "02-foundation/backend/alembic.ini",
+    "bytes": 97,
+    "sha256": "61f3e38cc87aeeb1e17d1b83b05dc51e775a173ad06c5df047f838e3d411a175"
+  },
+  {
+    "path": "02-foundation/backend/app/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "02-foundation/backend/app/configure.py",
+    "bytes": 1319,
+    "sha256": "19b7ff25a2204a38e4938bc8a6c630a16b1212ec951d109a3aa3766a29fc418f"
+  },
+  {
+    "path": "02-foundation/backend/app/core/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "02-foundation/backend/app/core/database.py",
+    "bytes": 521,
+    "sha256": "1cf09f8df10b46bd27b8807b9350bb39217ab99b82db6b1f33c5573e7b924f38"
+  },
+  {
+    "path": "02-foundation/backend/app/core/security.py",
+    "bytes": 1968,
+    "sha256": "76ee680b8f970c644504a730d85039ffceded9c22a41bc7bd4bd66775124246c"
+  },
+  {
+    "path": "02-foundation/backend/app/core/settings.py",
+    "bytes": 504,
+    "sha256": "a4777da61d5b4d598ed6cbdf5471477039be15c6a7367f7cc1373f215c32feb0"
+  },
+  {
+    "path": "02-foundation/backend/app/main.py",
+    "bytes": 1450,
+    "sha256": "9d59167eaac7e8d97051a3af10ce5204092b81b39256895798a04fb72358f0a6"
+  },
+  {
+    "path": "02-foundation/backend/app/models.py",
+    "bytes": 1757,
+    "sha256": "f9930aa4c23b78f990b44aa85b7f7153aec7141f6f0ea9ea52503a361785a69e"
+  },
+  {
+    "path": "02-foundation/backend/app/modules/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "02-foundation/backend/app/modules/config/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "02-foundation/backend/app/modules/config/router.py",
+    "bytes": 3101,
+    "sha256": "b9706ce701e5fb72f67e1cfc8bddfa8302ce8f5986023830a3c334f9cd1adac7"
+  },
+  {
+    "path": "02-foundation/backend/app/modules/config/schemas.py",
+    "bytes": 569,
+    "sha256": "0c4c2075413d1d824fbbe92c8839052ccff85477f3791996dbc16fe9b178e57b"
+  },
+  {
+    "path": "02-foundation/backend/app/modules/users/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "02-foundation/backend/app/modules/users/router.py",
+    "bytes": 1988,
+    "sha256": "feb986d209b6272271c562a98fcb685d969d4075bfaea8da8a60e174f030de86"
+  },
+  {
+    "path": "02-foundation/backend/app/modules/users/schemas.py",
+    "bytes": 1015,
+    "sha256": "9919847d837defe2d2a2ab5e3f22c3bbb93d9b9d36558b5cbb4c81128cbc4a0c"
+  },
+  {
+    "path": "02-foundation/backend/app/seed.py",
+    "bytes": 1873,
+    "sha256": "fd8c3bdaee46c1486dce8ab6e0c84d8955e5a2fc699fa6aab599cf4e3e458b95"
+  },
+  {
+    "path": "02-foundation/backend/migrations/env.py",
+    "bytes": 567,
+    "sha256": "f641dd04f6a55772b47c2046190496eda3349e448e4b53e8f82ab45310b2a8d7"
+  },
+  {
+    "path": "02-foundation/backend/migrations/script.py.mako",
+    "bytes": 361,
+    "sha256": "f2267aa5b56b439a4f4b91308404fc1559f976dae3ea2392782dddc49b2bf074"
+  },
+  {
+    "path": "02-foundation/backend/migrations/versions/321917cab056_用户与基础配置.py",
+    "bytes": 2218,
+    "sha256": "1e364a561c64480de0873eacb011bd9de9d7430a1a24ff7c57a818735ca9b726"
+  },
+  {
+    "path": "02-foundation/backend/pyproject.toml",
+    "bytes": 111,
+    "sha256": "b6445d98fb08c7d259fea3db0e5b95bb32757b2f2e102d04ca662ec14f37a38a"
+  },
+  {
+    "path": "02-foundation/backend/pytest.ini",
+    "bytes": 79,
+    "sha256": "bec0bde43a9d04df6b9b4d25f65ebd69f2fa63600636f38b42bc2399a909aa8a"
+  },
+  {
+    "path": "02-foundation/backend/requirements-dev.txt",
+    "bytes": 62,
+    "sha256": "babe339ba60afa0c8c4b1af17d91ee791ff91f768ff4372d21d97abb623bdac2"
+  },
+  {
+    "path": "02-foundation/backend/requirements.txt",
+    "bytes": 224,
+    "sha256": "5f7d107fef104fcdb96b07cafda231ee5708a8309d646f1a3c9142afcb5d9de8"
+  },
+  {
+    "path": "02-foundation/backend/tests/conftest.py",
+    "bytes": 2201,
+    "sha256": "4cb6d51bfcb085f91475b656c495b951839516e458e886d7a3281c709be2a7ac"
+  },
+  {
+    "path": "02-foundation/backend/tests/test_auth.py",
+    "bytes": 577,
+    "sha256": "ae9338999de9c14f8d07334585a97174d53aca7213ed8640ac794d22d904d084"
+  },
+  {
+    "path": "02-foundation/backend/tests/test_health.py",
+    "bytes": 256,
+    "sha256": "ccad338b21c507af9b09439519579b9bfa7335f8cef772cbdfdd0f85f8451ca5"
+  },
+  {
+    "path": "02-foundation/backend/tests/test_seed.py",
+    "bytes": 675,
+    "sha256": "7b505e357036cea087f4ef22366358f16e965217e3c0a2e6c63a85d6662e353e"
+  },
+  {
+    "path": "02-foundation/backend/tests/test_users_config.py",
+    "bytes": 3594,
+    "sha256": "a690411032139d0c6cebcddb36e74019d30e9b729d5f45887eab349d858bb6a3"
+  },
+  {
+    "path": "02-foundation/frontend/index.html",
+    "bytes": 319,
+    "sha256": "ecd99492cf5ec298edceee0d229637a9bab39fbe1ba81a129ad9791686b26fe0"
+  },
+  {
+    "path": "02-foundation/frontend/package-lock.json",
+    "bytes": 67120,
+    "sha256": "d6833d6c0106223329ea3fd3ccbda7871ba3119785d6fee5c775e46e26afbd7b"
+  },
+  {
+    "path": "02-foundation/frontend/package.json",
+    "bytes": 604,
+    "sha256": "fa6017a4680f801a0a96627869f99094ac8af84b8879d07e6d6edef5b8e0e20d"
+  },
+  {
+    "path": "02-foundation/frontend/src/App.vue",
+    "bytes": 802,
+    "sha256": "3f2ea9f8930a7d5fd0d703b657bfb3dca027525006388850d07bc6547f3035b6"
+  },
+  {
+    "path": "02-foundation/frontend/src/api/config.ts",
+    "bytes": 1110,
+    "sha256": "2b92a65ba297a64a425f1e0b3bc328fb91017957f46eab224455da7f776a80ba"
+  },
+  {
+    "path": "02-foundation/frontend/src/api/health.ts",
+    "bytes": 598,
+    "sha256": "6f1e0c947d86708f8cf23c41344f39ad926ff0ad5ebabf6d9a5dc59e3c841d37"
+  },
+  {
+    "path": "02-foundation/frontend/src/api/http.ts",
+    "bytes": 1680,
+    "sha256": "d7eb8772e89325964637d574491b9d8a461252db9d178b0d13c5689eecda3f93"
+  },
+  {
+    "path": "02-foundation/frontend/src/api/models.ts",
+    "bytes": 584,
+    "sha256": "a04d26e3b60696867728c10ee34e107efd161b7bc0d2d0099b9680191d6dd4f0"
+  },
+  {
+    "path": "02-foundation/frontend/src/api/users.ts",
+    "bytes": 813,
+    "sha256": "24ddba239a766b7337e631aa057037a7d70338adf7e5be3f67fd1723e0cd5f6f"
+  },
+  {
+    "path": "02-foundation/frontend/src/main.ts",
+    "bytes": 334,
+    "sha256": "8b9f6c88745885fc0cf39e7c274079e82fcef4464afcbb4d8db75660cbb63a23"
+  },
+  {
+    "path": "02-foundation/frontend/src/router/index.ts",
+    "bytes": 772,
+    "sha256": "87e02f572d370329cac977a2d63003334194b461378e16b6eb1d8b59739556b2"
+  },
+  {
+    "path": "02-foundation/frontend/src/stores/auth.ts",
+    "bytes": 638,
+    "sha256": "46d9befc720e5e5a48851052506d13026464a512ad2387ae48dddf0ec2ee3260"
+  },
+  {
+    "path": "02-foundation/frontend/src/style.css",
+    "bytes": 1241,
+    "sha256": "6c002614669abe98f35f04526ec3acf107867dc6af4ba8677c13d33cb39f650c"
+  },
+  {
+    "path": "02-foundation/frontend/src/views/AdminView.vue",
+    "bytes": 6358,
+    "sha256": "bceda8c19e6a990eefcd9b449ac2ddf3fe08a785ad2e5d86564e8b7b7328213d"
+  },
+  {
+    "path": "02-foundation/frontend/src/views/HealthView.vue",
+    "bytes": 1635,
+    "sha256": "9e2e3fd9284bcf46311a713063189db2b3845120a28434dce301ca40b52a8a98"
+  },
+  {
+    "path": "02-foundation/frontend/src/views/LoginView.vue",
+    "bytes": 1391,
+    "sha256": "ab70f924aea387cd636b21cfe7c4fe62a7423ec50c64a6f88cb5b36dc53db58a"
+  },
+  {
+    "path": "02-foundation/frontend/tsconfig.json",
+    "bytes": 448,
+    "sha256": "640ffe7cd60840d1dc6620cf244eb0424b4d550e9be911a7184d26326bddc71b"
+  },
+  {
+    "path": "02-foundation/frontend/vite.config.ts",
+    "bytes": 320,
+    "sha256": "9f583d2b6782c26fdbabceca241e8e3f64dd0dd1ef58536c6f08fa57dab5b345"
+  },
+  {
+    "path": "03-tickets/.gitignore",
+    "bytes": 90,
+    "sha256": "07992a5b767af1568866fb8d9c769a8ab92d26af6e7f6e03a1cdcece7bf87f74"
+  },
+  {
+    "path": "03-tickets/backend/.env.example",
+    "bytes": 135,
+    "sha256": "ba48b05522c3e244cc5bc05841869ae31c2d2581bc3ce14f92c8f2c215c29cf2"
+  },
+  {
+    "path": "03-tickets/backend/.env.test.example",
+    "bytes": 108,
+    "sha256": "a54a5a7c364c656ad082d3d56a4ab3d7c3895b4380209eeb95e5a5e939fd1240"
+  },
+  {
+    "path": "03-tickets/backend/alembic.ini",
+    "bytes": 97,
+    "sha256": "61f3e38cc87aeeb1e17d1b83b05dc51e775a173ad06c5df047f838e3d411a175"
+  },
+  {
+    "path": "03-tickets/backend/app/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "03-tickets/backend/app/configure.py",
+    "bytes": 1319,
+    "sha256": "19b7ff25a2204a38e4938bc8a6c630a16b1212ec951d109a3aa3766a29fc418f"
+  },
+  {
+    "path": "03-tickets/backend/app/core/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "03-tickets/backend/app/core/database.py",
+    "bytes": 521,
+    "sha256": "1cf09f8df10b46bd27b8807b9350bb39217ab99b82db6b1f33c5573e7b924f38"
+  },
+  {
+    "path": "03-tickets/backend/app/core/security.py",
+    "bytes": 1968,
+    "sha256": "76ee680b8f970c644504a730d85039ffceded9c22a41bc7bd4bd66775124246c"
+  },
+  {
+    "path": "03-tickets/backend/app/core/settings.py",
+    "bytes": 504,
+    "sha256": "a4777da61d5b4d598ed6cbdf5471477039be15c6a7367f7cc1373f215c32feb0"
+  },
+  {
+    "path": "03-tickets/backend/app/main.py",
+    "bytes": 1549,
+    "sha256": "416e73cbae6917e2862debb7c38f9f8ea69e616f077ca91006593ba6b2117e5f"
+  },
+  {
+    "path": "03-tickets/backend/app/models.py",
+    "bytes": 3946,
+    "sha256": "3b7d94fdd06504c51b578de07e63435f9398fa831c83b647f12919c7a3fc2688"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/config/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/config/router.py",
+    "bytes": 3101,
+    "sha256": "b9706ce701e5fb72f67e1cfc8bddfa8302ce8f5986023830a3c334f9cd1adac7"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/config/schemas.py",
+    "bytes": 569,
+    "sha256": "0c4c2075413d1d824fbbe92c8839052ccff85477f3791996dbc16fe9b178e57b"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/tickets/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/tickets/router.py",
+    "bytes": 5140,
+    "sha256": "483984dd58c0fabd2baa2e281ef81adc74a048d40f9c211a9fc8b76fc12c0371"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/tickets/schemas.py",
+    "bytes": 2907,
+    "sha256": "1ba1b5fd65be45791bf3b310e70c0cc2aed86c17a01057d8f3244acf513f70ac"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/tickets/service.py",
+    "bytes": 2250,
+    "sha256": "98d192f6b5a506c7c14ea5b0d7fa10b0597a0ed5d5dcc30a72f100cfce771261"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/users/__init__.py",
+    "bytes": 1,
+    "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/users/router.py",
+    "bytes": 1988,
+    "sha256": "feb986d209b6272271c562a98fcb685d969d4075bfaea8da8a60e174f030de86"
+  },
+  {
+    "path": "03-tickets/backend/app/modules/users/schemas.py",
+    "bytes": 1015,
+    "sha256": "9919847d837defe2d2a2ab5e3f22c3bbb93d9b9d36558b5cbb4c81128cbc4a0c"
+  },
+  {
+    "path": "03-tickets/backend/app/seed.py",
+    "bytes": 1873,
+    "sha256": "fd8c3bdaee46c1486dce8ab6e0c84d8955e5a2fc699fa6aab599cf4e3e458b95"
+  },
+  {
+    "path": "03-tickets/backend/migrations/env.py",
+    "bytes": 567,
+    "sha256": "f641dd04f6a55772b47c2046190496eda3349e448e4b53e8f82ab45310b2a8d7"
+  },
+  {
+    "path": "03-tickets/backend/migrations/script.py.mako",
+    "bytes": 361,
+    "sha256": "f2267aa5b56b439a4f4b91308404fc1559f976dae3ea2392782dddc49b2bf074"
+  },
+  {
+    "path": "03-tickets/backend/migrations/versions/1368452a803a_工单与处理记录.py",
+    "bytes": 3821,
+    "sha256": "6ecd9e99513b5e529dd7fef7daa9e86ae999525b545814f887791cd60c913d8d"
+  },
+  {
+    "path": "03-tickets/backend/migrations/versions/321917cab056_用户与基础配置.py",
+    "bytes": 2218,
+    "sha256": "1e364a561c64480de0873eacb011bd9de9d7430a1a24ff7c57a818735ca9b726"
+  },
+  {
+    "path": "03-tickets/backend/pyproject.toml",
+    "bytes": 111,
+    "sha256": "b6445d98fb08c7d259fea3db0e5b95bb32757b2f2e102d04ca662ec14f37a38a"
+  },
+  {
+    "path": "03-tickets/backend/pytest.ini",
+    "bytes": 79,
+    "sha256": "bec0bde43a9d04df6b9b4d25f65ebd69f2fa63600636f38b42bc2399a909aa8a"
+  },
+  {
+    "path": "03-tickets/backend/requirements-dev.txt",
+    "bytes": 62,
+    "sha256": "babe339ba60afa0c8c4b1af17d91ee791ff91f768ff4372d21d97abb623bdac2"
+  },
+  {
+    "path": "03-tickets/backend/requirements.txt",
+    "bytes": 224,
+    "sha256": "5f7d107fef104fcdb96b07cafda231ee5708a8309d646f1a3c9142afcb5d9de8"
+  },
+  {
+    "path": "03-tickets/backend/tests/conftest.py",
+    "bytes": 2201,
+    "sha256": "4cb6d51bfcb085f91475b656c495b951839516e458e886d7a3281c709be2a7ac"
+  },
+  {
+    "path": "03-tickets/backend/tests/test_auth.py",
+    "bytes": 577,
+    "sha256": "ae9338999de9c14f8d07334585a97174d53aca7213ed8640ac794d22d904d084"
+  },
+  {
+    "path": "03-tickets/backend/tests/test_health.py",
+    "bytes": 256,
+    "sha256": "ccad338b21c507af9b09439519579b9bfa7335f8cef772cbdfdd0f85f8451ca5"
+  },
+  {
+    "path": "03-tickets/backend/tests/test_seed.py",
+    "bytes": 675,
+    "sha256": "7b505e357036cea087f4ef22366358f16e965217e3c0a2e6c63a85d6662e353e"
+  },
+  {
+    "path": "03-tickets/backend/tests/test_tickets.py",
+    "bytes": 5895,
+    "sha256": "b88e50acc2ffffc4cf1fbec66b0441f90f5d2c954cdd94fe863af78055f8ba15"
+  },
+  {
+    "path": "03-tickets/backend/tests/test_users_config.py",
+    "bytes": 3594,
+    "sha256": "a690411032139d0c6cebcddb36e74019d30e9b729d5f45887eab349d858bb6a3"
+  },
+  {
+    "path": "03-tickets/frontend/index.html",
+    "bytes": 319,
+    "sha256": "ecd99492cf5ec298edceee0d229637a9bab39fbe1ba81a129ad9791686b26fe0"
+  },
+  {
+    "path": "03-tickets/frontend/package-lock.json",
+    "bytes": 67120,
+    "sha256": "d6833d6c0106223329ea3fd3ccbda7871ba3119785d6fee5c775e46e26afbd7b"
+  },
+  {
+    "path": "03-tickets/frontend/package.json",
+    "bytes": 604,
+    "sha256": "fa6017a4680f801a0a96627869f99094ac8af84b8879d07e6d6edef5b8e0e20d"
+  },
+  {
+    "path": "03-tickets/frontend/src/App.vue",
+    "bytes": 871,
+    "sha256": "fb07003eda5555931bcafcee0384bfd863385abb9c071c5a0c9ee7497c4197b4"
+  },
+  {
+    "path": "03-tickets/frontend/src/api/config.ts",
+    "bytes": 1110,
+    "sha256": "2b92a65ba297a64a425f1e0b3bc328fb91017957f46eab224455da7f776a80ba"
+  },
+  {
+    "path": "03-tickets/frontend/src/api/health.ts",
+    "bytes": 598,
+    "sha256": "6f1e0c947d86708f8cf23c41344f39ad926ff0ad5ebabf6d9a5dc59e3c841d37"
+  },
+  {
+    "path": "03-tickets/frontend/src/api/http.ts",
+    "bytes": 1680,
+    "sha256": "d7eb8772e89325964637d574491b9d8a461252db9d178b0d13c5689eecda3f93"
+  },
+  {
+    "path": "03-tickets/frontend/src/api/models.ts",
+    "bytes": 2119,
+    "sha256": "a6f355f6b770adf03e18be961f4af977cde23f4e087f88cbe360349e335abd61"
+  },
+  {
+    "path": "03-tickets/frontend/src/api/tickets.ts",
+    "bytes": 1816,
+    "sha256": "e50a468a145b821d9134b20a20534f9cb798e081d3201818e839790e497f2f6a"
+  },
+  {
+    "path": "03-tickets/frontend/src/api/users.ts",
+    "bytes": 813,
+    "sha256": "24ddba239a766b7337e631aa057037a7d70338adf7e5be3f67fd1723e0cd5f6f"
+  },
+  {
+    "path": "03-tickets/frontend/src/main.ts",
+    "bytes": 334,
+    "sha256": "8b9f6c88745885fc0cf39e7c274079e82fcef4464afcbb4d8db75660cbb63a23"
+  },
+  {
+    "path": "03-tickets/frontend/src/router/index.ts",
+    "bytes": 1164,
+    "sha256": "852f5c246ede7138a09760d164b029d9a6ea04e05853f5b7235173bdcb84ed54"
+  },
+  {
+    "path": "03-tickets/frontend/src/stores/auth.ts",
+    "bytes": 638,
+    "sha256": "46d9befc720e5e5a48851052506d13026464a512ad2387ae48dddf0ec2ee3260"
+  },
+  {
+    "path": "03-tickets/frontend/src/style.css",
+    "bytes": 1241,
+    "sha256": "6c002614669abe98f35f04526ec3acf107867dc6af4ba8677c13d33cb39f650c"
+  },
+  {
+    "path": "03-tickets/frontend/src/views/AdminView.vue",
+    "bytes": 6358,
+    "sha256": "bceda8c19e6a990eefcd9b449ac2ddf3fe08a785ad2e5d86564e8b7b7328213d"
+  },
+  {
+    "path": "03-tickets/frontend/src/views/HealthView.vue",
+    "bytes": 1635,
+    "sha256": "9e2e3fd9284bcf46311a713063189db2b3845120a28434dce301ca40b52a8a98"
+  },
+  {
+    "path": "03-tickets/frontend/src/views/LoginView.vue",
+    "bytes": 1351,
+    "sha256": "41637e0256a52490bf9860393c062760bfad99931e9efef6a31ef6ca77e3da8d"
+  },
+  {
+    "path": "03-tickets/frontend/src/views/TicketDetailView.vue",
+    "bytes": 4990,
+    "sha256": "ceb3ba7f3ed2f9596ed214e86c3922c0fa84aaab745ddd3658a05085bc2cb12c"
+  },
+  {
+    "path": "03-tickets/frontend/src/views/TicketEditor.vue",
+    "bytes": 5932,
+    "sha256": "94bd464f65be4e7167384e1659d93b960d214a63edec7fcded965deb29b46718"
+  },
+  {
+    "path": "03-tickets/frontend/src/views/TicketsView.vue",
+    "bytes": 4807,
+    "sha256": "0a77814a6fed638d2cc84386591e3cbe82d1f632fdba53f5a3fe963d4d000823"
+  },
+  {
+    "path": "03-tickets/frontend/tsconfig.json",
+    "bytes": 448,
+    "sha256": "640ffe7cd60840d1dc6620cf244eb0424b4d550e9be911a7184d26326bddc71b"
+  },
+  {
+    "path": "03-tickets/frontend/vite.config.ts",
+    "bytes": 320,
+    "sha256": "9f583d2b6782c26fdbabceca241e8e3f64dd0dd1ef58536c6f08fa57dab5b345"
+  },
+  {
+    "path": "PLAN.md",
+    "bytes": 1702,
+    "sha256": "fdc5b818b9344fe947161d00b9ef12972a2e757fe5e27e299181e9b356a8f000"
+  },
+  {
+    "path": "README.md",
+    "bytes": 3735,
+    "sha256": "ba77f25fbebebf4dd8efe681749e46ee97e1339ff0174bbbb69c3e7698cf2b0d"
+  },
+  {
+    "path": "docs/00-学习顺序与术语.md",
+    "bytes": 3734,
+    "sha256": "b2e889f971cf7bb2b801ede850d9b1669960dee7c5f4a2e5c5f12d70f9104379"
+  },
+  {
+    "path": "docs/01-前后端连通.md",
+    "bytes": 4994,
+    "sha256": "a0c15f25695e11d5c2ca5413e6426f9898fa80fc316bbdbb606aaff516b54025"
+  },
+  {
+    "path": "docs/02-数据库登录与配置.md",
+    "bytes": 9465,
+    "sha256": "63fca76714d35cb3fcb42c470012f8636178f2ab144986aedc44baab3939da68"
+  },
+  {
+    "path": "docs/03-工单管理闭环.md",
+    "bytes": 8606,
+    "sha256": "1a8b98f579abb99095b3142e9941f64f249cc30f47e4dfb4ce54382e0cfcaa3b"
+  },
+  {
+    "path": "docs/04-固定写法与可修改项.md",
+    "bytes": 8852,
+    "sha256": "b152c9704ec4de755c3171611af308afdd8f304c610d0586545b5ee38d5562b5"
+  },
+  {
+    "path": "docs/05-逐文件代码与讲解.md",
+    "bytes": 146142,
+    "sha256": "2a4dbef1d7cb7b0862c25cc6cfc6e78abac805ff8d0d44f4ab663289eef65332"
+  },
+  {
+    "path": "docs/06-验证记录.md",
+    "bytes": 3846,
+    "sha256": "1b5ae922a15756b6d1dbfe050408f282b4c0df69649743ee1c743651eb6b3275"
+  },
+  {
+    "path": "docs/images/closed-ticket.png",
+    "bytes": 76389,
+    "sha256": "04118de9778becd4b3c1de03a1c445fbac3bd83059db18f9618f412001ab1fe3"
+  }
+]

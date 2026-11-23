@@ -1,0 +1,86 @@
+name: oshino-dev
+
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: after_sales
+      POSTGRES_USER: after_sales
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?请在.env.docker中配置POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U after_sales -d after_sales"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  backend:
+    build:
+      context: ./backend
+    init: true
+    environment:
+      DATABASE_URL: "postgresql+psycopg://after_sales:${POSTGRES_PASSWORD:?请在.env.docker中配置POSTGRES_PASSWORD}@db:5432/after_sales"
+      JWT_SECRET: ${JWT_SECRET:?请在.env.docker中配置JWT_SECRET}
+      ACCESS_TOKEN_MINUTES: "480"
+      AI_SETTINGS_PATH: /app/private-ai/settings.json
+      WATCHFILES_FORCE_POLLING: "true"
+      MILVUS_DB_PATH: /app/data/milvus/cases.db
+      OCR_DETECTION_MODEL_DIR: /root/.paddlex/official_models/PP-OCRv5_mobile_det
+      OCR_RECOGNITION_MODEL_DIR: /root/.paddlex/official_models/PP-OCRv5_mobile_rec
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./backend/app:/app/app
+      - ./.local/ai-service:/app/private-ai
+      - ./backend/.env.retrieval:/app/.env.retrieval:ro
+      - ./backend/.env.chat:/app/.env.chat:ro
+      - ./backend/.env.smtp:/app/.env.smtp:ro
+      - ./data/milvus:/app/data/milvus
+      - ocr_models:/root/.paddlex
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=3)"
+      interval: 5s
+      timeout: 4s
+      retries: 12
+      start_period: 15s
+
+  frontend:
+    build:
+      context: ./frontend
+    init: true
+    environment:
+      API_PROXY_TARGET: http://backend:8000
+      DOCKER_DEV: "1"
+    ports:
+      - "127.0.0.1:18734:5173"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/index.html:/app/index.html:ro
+      - ./frontend/vite.config.ts:/app/vite.config.ts:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - --input-type=module
+        - -e
+        - "const response = await fetch('http://127.0.0.1:5173/', { signal: AbortSignal.timeout(3000) }); process.exit(response.ok ? 0 : 1)"
+      interval: 5s
+      timeout: 4s
+      retries: 12
+      start_period: 10s
+
+volumes:
+  postgres_data:
+  ocr_models:

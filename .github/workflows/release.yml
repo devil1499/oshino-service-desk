@@ -1,11 +1,10 @@
-name: Test, publish and deploy
+name: 测试并发布镜像
 
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -70,9 +69,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-    outputs:
-      backend_image: ${{ steps.images.outputs.backend_image }}
-      frontend_image: ${{ steps.images.outputs.frontend_image }}
     steps:
       - uses: actions/checkout@v6
       - name: Build and smoke test production images
@@ -92,7 +88,6 @@ jobs:
           curl --fail --silent --show-error --max-time 10 http://127.0.0.1:18734/ > /dev/null
           curl --fail --silent --show-error --max-time 10 http://127.0.0.1:18734/api/health | jq -e '.status == "ok"'
       - name: Publish to GHCR
-        id: images
         env:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -102,53 +97,4 @@ jobs:
           for service in backend frontend; do
             image="$base-$service:$GITHUB_SHA"
             docker push "$image"
-            digest=$(docker inspect --format '{{index .RepoDigests 0}}' "$image")
-            printf '%s_image=%s\n' "$service" "$digest" >> "$GITHUB_OUTPUT"
           done
-
-  deploy:
-    if: vars.DEPLOY_ENABLED == 'true'
-    needs: publish
-    runs-on: ubuntu-24.04
-    environment: production
-    permissions:
-      contents: read
-      packages: read
-    steps:
-      - uses: actions/checkout@v6
-      - name: Upload release and deploy on Ubuntu
-        env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
-          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BACKEND_IMAGE: ${{ needs.publish.outputs.backend_image }}
-          FRONTEND_IMAGE: ${{ needs.publish.outputs.frontend_image }}
-        run: |
-          set -euo pipefail
-          umask 077
-          : "${DEPLOY_SSH_KEY:?Set the production SSH key}"
-          : "${DEPLOY_KNOWN_HOSTS:?Set the verified SSH host key}"
-          [[ "$DEPLOY_HOST" =~ ^[A-Za-z0-9][A-Za-z0-9.-]*$ ]]
-          [[ "$DEPLOY_USER" =~ ^[A-Za-z_][A-Za-z0-9_-]*$ ]]
-          key="$RUNNER_TEMP/oshino_deploy_key"
-          known_hosts="$RUNNER_TEMP/oshino_known_hosts"
-          printf '%s\n' "$DEPLOY_SSH_KEY" > "$key"
-          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$known_hosts"
-          trap 'rm -f -- "$key" "$known_hosts"' EXIT
-          options=(-i "$key" -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$known_hosts")
-          target="$DEPLOY_USER@$DEPLOY_HOST"
-          release="oshino-service-desk/releases/$GITHUB_SHA"
-          ssh "${options[@]}" "$target" "umask 077 && mkdir -p '$release'"
-          scp "${options[@]}" deploy/compose.yaml deploy/release.sh "$target:$release/"
-          printf '%s' "$GHCR_TOKEN" | ssh "${options[@]}" "$target" "bash '$release/release.sh' '$GITHUB_ACTOR' '$BACKEND_IMAGE' '$FRONTEND_IMAGE'"
-      - name: Check public website
-        env:
-          SITE_URL: ${{ vars.DEPLOY_SITE_URL }}
-        run: |
-          set -euo pipefail
-          if [[ -n "$SITE_URL" ]]; then
-            curl --fail --silent --show-error --max-time 15 "${SITE_URL%/}/" > /dev/null
-            curl --fail --silent --show-error --max-time 15 "${SITE_URL%/}/api/health" | jq -e '.status == "ok"'
-          fi

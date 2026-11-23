@@ -1,0 +1,86 @@
+name: 部署到服务器
+
+on: workflow_dispatch
+
+permissions:
+  contents: read
+  actions: read
+  packages: read
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment: production
+    steps:
+      - name: 选择主分支最近通过测试并发布镜像的提交
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sha=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/release.yml/runs?branch=main&event=push&status=success&per_page=1" --jq '.workflow_runs[0].head_sha // empty')
+          if [[ ! "$sha" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::请先等待主分支首次测试和镜像发布成功。"
+            exit 1
+          fi
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "本次部署提交：$sha" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ steps.release.outputs.sha }}
+      - name: 获取本次发布的镜像摘要
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+        run: |
+          set -euo pipefail
+          printf '%s' "$GH_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+          base="ghcr.io/${GITHUB_REPOSITORY,,}"
+          for service in backend frontend; do
+            image="$base-$service"
+            docker pull "$image:$RELEASE_SHA"
+            reference=$(docker inspect --format '{{index .RepoDigests 0}}' "$image:$RELEASE_SHA")
+            digest=${reference#*@}
+            [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+            echo "${service^^}_IMAGE=$image@$digest" >> "$GITHUB_ENV"
+          done
+      - name: Upload release and deploy on Ubuntu
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_SHA: ${{ steps.release.outputs.sha }}
+        run: |
+          set -euo pipefail
+          umask 077
+          : "${DEPLOY_SSH_KEY:?Set the production SSH key}"
+          : "${DEPLOY_KNOWN_HOSTS:?Set the verified SSH host key}"
+          [[ "$DEPLOY_HOST" =~ ^[A-Za-z0-9][A-Za-z0-9.-]*$ ]]
+          [[ "$DEPLOY_USER" =~ ^[A-Za-z_][A-Za-z0-9_-]*$ ]]
+          key="$RUNNER_TEMP/oshino_deploy_key"
+          known_hosts="$RUNNER_TEMP/oshino_known_hosts"
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$key"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$known_hosts"
+          trap 'rm -f -- "$key" "$known_hosts"' EXIT
+          options=(-i "$key" -o IdentitiesOnly=yes -o BatchMode=yes -o ConnectTimeout=15 -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$known_hosts")
+          target="$DEPLOY_USER@$DEPLOY_HOST"
+          release="oshino-service-desk/releases/$RELEASE_SHA"
+          ssh "${options[@]}" "$target" "umask 077 && mkdir -p '$release'"
+          scp "${options[@]}" deploy/compose.yaml deploy/release.sh "$target:$release/"
+          printf '%s' "$GHCR_TOKEN" | ssh "${options[@]}" "$target" "bash '$release/release.sh' '$GITHUB_ACTOR' '$BACKEND_IMAGE' '$FRONTEND_IMAGE'"
+      - name: Check public website
+        env:
+          SITE_URL: ${{ vars.DEPLOY_SITE_URL }}
+        run: |
+          set -euo pipefail
+          if [[ -n "$SITE_URL" ]]; then
+            curl --fail --silent --show-error --max-time 15 "${SITE_URL%/}/" > /dev/null
+            curl --fail --silent --show-error --max-time 15 "${SITE_URL%/}/api/health" | jq -e '.status == "ok"'
+          fi

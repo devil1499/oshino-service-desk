@@ -27,7 +27,7 @@ WEB_PORT=18734
 | DEPLOY_SSH_KEY | 部署专用 SSH 私钥 |
 | DEPLOY_KNOWN_HOSTS | 从服务器控制台核验过的 known_hosts 完整记录 |
 
-在 Settings → Secrets and variables → Actions → Variables 设置仓库变量 `DEPLOY_ENABLED=true`。如已对外开放，可同时设置仓库变量 `DEPLOY_SITE_URL=https://你的域名`，用于检查公网首页和 API。配置完成后，在 Actions 选择 `Test, publish and deploy`，手动运行 `main` 或推送新提交。
+日常推送只触发「测试并发布镜像」。需要上线时，在 GitHub 的 Actions 中选择「部署到服务器」，点击「运行工作流」，选择 main 并确认。它会选取 main 上最近一次成功的推送构建，按提交读取部署脚本并拉取对应的镜像。若最新提交仍在测试或已失败，会选用前一次成功的版本。运行摘要可查看实际部署的提交。可选仓库变量 `DEPLOY_SITE_URL` 用于检查公网首页和 API。
 
 GHCR 使用 GitHub Actions 的临时令牌发布和拉取镜像。每次部署保存在 `~/oshino-service-desk/releases/<commit>`，成功后 `current` 指向对应目录。首次启动执行数据库迁移。更新前保留数据库备份，涉及数据库结构变化时需确认迁移兼容性，再决定是否回退镜像。
 

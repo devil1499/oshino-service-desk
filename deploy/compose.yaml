@@ -1,0 +1,62 @@
+name: oshino-production
+
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: after_sales
+      POSTGRES_USER: after_sales
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env.server}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "after_sales", "-d", "after_sales"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+  backend:
+    image: ${BACKEND_IMAGE:?Set BACKEND_IMAGE}
+    restart: unless-stopped
+    init: true
+    command: ["sh", "-c", "python -m alembic upgrade head && exec python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+    env_file: ${SERVER_ENV_FILE:?Set SERVER_ENV_FILE}
+    environment:
+      DATABASE_URL: postgresql+psycopg://after_sales:${POSTGRES_PASSWORD}@db:5432/after_sales
+      AI_SETTINGS_PATH: /app/private-ai/settings.json
+      MILVUS_DB_PATH: /app/data/milvus/cases.db
+      OCR_DETECTION_MODEL_DIR: /root/.paddlex/official_models/PP-OCRv5_mobile_det
+      OCR_RECOGNITION_MODEL_DIR: /root/.paddlex/official_models/PP-OCRv5_mobile_rec
+    volumes:
+      - ai_settings:/app/private-ai
+      - milvus_data:/app/data/milvus
+      - ocr_models:/root/.paddlex
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=3)"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+
+  frontend:
+    image: ${FRONTEND_IMAGE:?Set FRONTEND_IMAGE}
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${WEB_PORT:-18734}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/api/health"]
+      interval: 5s
+      timeout: 4s
+      retries: 15
+
+volumes:
+  postgres_data:
+  ai_settings:
+  milvus_data:
+  ocr_models:

@@ -20,3 +20,4 @@ dist/
 password.md
 .pyright/
 data/evaluation/csds/
+.env.server

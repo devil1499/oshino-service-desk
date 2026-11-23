@@ -59,10 +59,10 @@ async def test_evaluation_records_real_pipeline_and_manual_review_without_cross_
     assert run['results'][0]['message_id'] is not None
     assert run['metrics']['correctness'] is None
     assert run['metrics']['retrieval_hit'] == 1
-    assert len(calls) == 3
+    assert len(calls) == 2
     again = await client.post(f'/api/qa/evaluations/runs/{run_id}/next', headers=headers)
     assert again.json()['results'] == run['results']
-    assert len(calls) == 3
+    assert len(calls) == 2
     conversations = (await client.get('/api/qa/conversations', headers=headers)).json()['items']
     assert not any(item['id'] == run['results'][0]['conversation_id'] for item in conversations)
     review = {'correctness': 2, 'covered_points': [0], 'citation_support': 2, 'note': '正确，但缺少验证登录步骤'}

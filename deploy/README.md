@@ -1,6 +1,6 @@
 # GitHub Actions 与 Ubuntu 上线
 
-推送 GitHub `main` 后，Actions 运行前端测试、构建以及后端测试（含临时 PostgreSQL）。测试通过后构建生产镜像、使用独立数据库启动服务，并检查首页和 API。验证通过的镜像以提交 SHA 标记推送至 GHCR。服务器部署使用镜像摘要。
+推送 main 后，GitHub 执行前后端测试和前端类型检查。运行结果在 Actions → 自动测试 中查看。
 
 ## 首次准备 Ubuntu
 
@@ -27,7 +27,7 @@ WEB_PORT=18734
 | DEPLOY_SSH_KEY | 部署专用 SSH 私钥 |
 | DEPLOY_KNOWN_HOSTS | 从服务器控制台核验过的 known_hosts 完整记录 |
 
-日常推送只触发「测试并发布镜像」。需要上线时，在 GitHub 的 Actions 中选择「部署到服务器」，点击「运行工作流」，选择 main 并确认。它会选取 main 上最近一次成功的推送构建，按提交读取部署脚本并拉取对应的镜像。若最新提交仍在测试或已失败，会选用前一次成功的版本。运行摘要可查看实际部署的提交。可选仓库变量 `DEPLOY_SITE_URL` 用于检查公网首页和 API。
+准备上线时，先手动运行「手动打包镜像」，待测试和镜像发布成功后，再运行「部署到服务器」。两次均选 main。部署使用最近一次成功的手动打包版本。
 
 GHCR 使用 GitHub Actions 的临时令牌发布和拉取镜像。每次部署保存在 `~/oshino-service-desk/releases/<commit>`，成功后 `current` 指向对应目录。首次启动执行数据库迁移。更新前保留数据库备份，涉及数据库结构变化时需确认迁移兼容性，再决定是否回退镜像。
 
@@ -38,3 +38,7 @@ cd ~/oshino-service-desk
 export SERVER_ENV_FILE="$PWD/.env.server"
 docker compose --env-file "$SERVER_ENV_FILE" --env-file current/.images.env -f current/compose.yaml ps
 ```
+
+## 本机自动修复
+
+Windows 任务计划程序中的 Oshino-Codex-CI-Repair 每五分钟检查最近 20 条 main 推送测试失败记录。需登录 Windows、Codex CLI 已登录且 Docker Desktop 可用。只在独立检出目录修复，使用临时 PostgreSQL 运行后端测试，并运行前端测试和类型检查。每条失败记录最多三轮模型修复。修复范围为 backend/app 和 frontend/src。结果在 %LOCALAPPDATA%\OshinoCiRepair 下按 GitHub 运行编号保存。verified 表示补丁通过本机复测，not_reproduced 表示本机原始版本测试通过，needs_review 表示需要人工查看。确认补丁后在匹配的提交上使用 git apply 导入。暂停可在任务计划程序中禁用此任务。
